@@ -11,7 +11,7 @@ class FansControllerTest < ActionController::TestCase
   test "it gets show" do
     fan = Fan.create(name: "Gustavo", email: "belieber@example.com")
 
-    get :show, {'id' => fan.id}
+    get :show, { id: fan.id }
 
     assert_response :success
     assert_not_nil  assigns(:fan)
@@ -64,7 +64,7 @@ class FansControllerTest < ActionController::TestCase
     fan = Fan.create(name: "Gustavo", email: "belieber@example.com")
 
     assert_difference('Fan.count', -1) do
-      delete :destroy, { id: fan.id }
+      delete :destroy, id: fan.id
     end
 
     assert_response      :redirect

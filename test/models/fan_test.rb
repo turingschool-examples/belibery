@@ -3,8 +3,8 @@ require 'test_helper'
 class FanTest < ActiveSupport::TestCase
   def valid_attributes
     {
-      name: "Gustavo",
-      email: "yosoybelieber@example.com"
+      name:        "Gustavo",
+      email:       "yosoybelieber@example.com"
     }
   end
 
@@ -39,5 +39,18 @@ class FanTest < ActiveSupport::TestCase
     result = Fan.create(valid_attributes)
 
     assert_equal "Gustavo Belieber", result.beliebe
+  end
+
+  test "it belongs to a location" do
+    location = Location.create(
+      city:    "Denver",
+      state:   "Colorado",
+      country: "United States"
+      )
+
+    attributes = valid_attributes.merge(location_id: location.id)
+    result     = Fan.create(attributes)
+
+    assert_equal location, result.location
   end
 end

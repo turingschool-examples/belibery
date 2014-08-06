@@ -57,4 +57,14 @@ class LocationTest < ActiveSupport::TestCase
 
     assert_equal "Denverlieber", result.beliebe
   end
+
+  test "locations have many fans" do
+    location = Location.create(valid_attributes)
+    fan      = Fan.create(name: "Gustavo", email: "belieber@example.com")
+    location.fans << fan
+
+    refute          location.fans.empty?
+    assert_equal    1, location.fans.count 
+    assert_includes location.fans, fan
+  end
 end

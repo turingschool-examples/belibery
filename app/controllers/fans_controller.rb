@@ -22,6 +22,21 @@ class FansController < ApplicationController
     @fan = Fan.new
   end
 
+  def edit
+    @fan = Fan.find(params[:id])
+  end
+
+  def update
+    @fan = Fan.find(params[:id])
+
+    if @fan.update_attributes(fan_params)
+      redirect_to fan_path(@fan), notice: "You have updated a fan."
+    else
+      flash.now[:alert] = "The fan was not updated. Please try again."
+      render :edit
+    end
+  end
+
   def destroy
     fan = Fan.find(params[:id])
     fan.destroy

@@ -40,6 +40,26 @@ class FansControllerTest < ActionController::TestCase
     assert_equal    "The fan was not created. Please try again.", flash[:alert]
   end
 
+  test "it gets edit" do
+    fan = Fan.create(name: "Gustavo", email: "belieber@example.com")
+    get :edit, { id: fan.id }
+
+    assert_response :success
+    assert_not_nil  assigns(:fan)
+  end
+
+  test "it updates a fan" do
+    fan = Fan.create(name: "Gustavo", email: "belieber@example.com")
+    patch :update, { id: fan.id, fan: { name: "Horacio" } }
+
+    assert_response      :redirect
+    assert_redirected_to fan_path(assigns(:fan))
+    assert_equal         "You have updated a fan.", flash[:notice]
+
+    result = Fan.find(fan.id)
+    assert_equal "Horacio", result.name
+  end
+
   test "it deletes to destroy" do
     fan = Fan.create(name: "Gustavo", email: "belieber@example.com")
 

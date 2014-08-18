@@ -1,6 +1,6 @@
 == Belibery
 
-A sample app to teach students how to test models and controllers in Rails.
+A sample app to teach students basic Rails concepts.
 
 It has the followin branches in order of completion,
 
@@ -9,3 +9,5 @@ It has the followin branches in order of completion,
 3. Second Model
 4. Model Relationships
 5. Controller Test
+6. Validations
+7. Transactions

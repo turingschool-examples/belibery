@@ -45,13 +45,6 @@ class LocationTest < ActiveSupport::TestCase
     assert result.invalid?
   end
 
-  test "it cannot create a location with the same country" do
-    2.times { Location.create(valid_attributes) }
-
-    result = Location.where(country: "United States")
-    assert_equal 1, result.count
-  end
-
   test "it can beliebe a location" do
     result = Location.create(valid_attributes)
 
@@ -64,7 +57,7 @@ class LocationTest < ActiveSupport::TestCase
     location.fans << fan
 
     refute          location.fans.empty?
-    assert_equal    1, location.fans.count 
+    assert_equal    1, location.fans.count
     assert_includes location.fans, fan
   end
 end

@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
   validates :city,    presence: true
   validates :state,   presence: true
-  validates :country, presence: true, uniqueness: true
+  validates :country, presence: true
 
   has_many :fans
 

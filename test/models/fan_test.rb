@@ -3,8 +3,9 @@ require 'test_helper'
 class FanTest < ActiveSupport::TestCase
   def valid_attributes
     {
-      name:        "Gustavo",
-      email:       "yosoybelieber@example.com"
+      name:               "Gustavo",
+      email:              "yosoybelieber@example.com",
+      email_confirmation: "yosoybelieber@example.com"
     }
   end
 
@@ -52,5 +53,56 @@ class FanTest < ActiveSupport::TestCase
     result     = Fan.create(attributes)
 
     assert_equal location, result.location
+  end
+
+  test "it has many donations" do
+    fan      = Fan.create(valid_attributes)
+    donation = fan.donations.create
+
+    assert fan.donations
+    assert_includes fan.donations, donation
+  end
+
+  test "it doesn't create a fan named Justin Bieber" do
+    fan = Fan.create(
+      name:               "Justin Bieber",
+      email:              "justin@example.com",
+      email_confirmation: "justin@example.com"
+      )
+
+    assert fan.invalid?
+  end
+
+  test "it only accepts letters as a name" do
+    fan = Fan.create(
+      name:               "1234567890",
+      email:              "justin@example.com",
+      email_confirmation: "justin@example.com"
+      )
+
+    assert fan.invalid?
+  end
+
+  test "it only accepts an email between 5 to 50 characters" do
+    fan = Fan.create(
+      name:               "Gustavo",
+      email:              "jus",
+      email_confirmation: "jus"
+      )
+
+    assert fan.invalid?
+  end
+
+  test "it cannot create a fan named Jorge" do
+    fan = Fan.create(
+      name:               "Jorge",
+      email:              "justin@example.com",
+      email_confirmation: "justin@example.com"
+      )
+
+    assert fan.invalid?
+    assert_includes fan.errors.messages[:base],
+                    "System Error. Jorge is too Belieber."
+
   end
 end

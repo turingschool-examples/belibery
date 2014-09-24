@@ -2,7 +2,7 @@
 
 A sample app to teach students basic Rails concepts.
 
-It has the followin branches in order of completion,
+It has the following branches in order of completion,
 
 1. Initial
 2. First Model

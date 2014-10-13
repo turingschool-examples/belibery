@@ -60,4 +60,31 @@ class LocationTest < ActiveSupport::TestCase
     assert_equal    1, location.fans.count
     assert_includes location.fans, fan
   end
+
+  test "it orders the results by name" do
+    Location.create(valid_attributes)
+    Location.create(
+      city:    "Monterrey",
+      state:   "NL",
+      country: "Mexico"
+      )
+
+    assert_equal Location.by_city.first.city, "Denver"
+  end
+
+  test "it orders the results by country by default" do
+    Location.create(valid_attributes)
+    Location.create(
+      city:    "Monterrey",
+      state:   "NL",
+      country: "Mexico"
+      )
+    location = Location.create(
+      city:    "X",
+      state:   "X",
+      country: "X"
+      )
+
+    refute_includes Location.all, location
+  end
 end

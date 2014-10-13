@@ -18,7 +18,6 @@ class Fan < ActiveRecord::Base
             confirmation: true,
             length:       { in: 5..50 }
 
-
   validates_with JorgeValidator
 
   belongs_to :location

@@ -11,11 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140806062039) do
+ActiveRecord::Schema.define(version: 20140818062848) do
+
+  create_table "donations", force: true do |t|
+    t.integer  "amount"
+    t.integer  "fan_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "donations", ["fan_id"], name: "index_donations_on_fan_id"
 
   create_table "fans", force: true do |t|
     t.string   "name"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "location_id"
+  end
+
+  create_table "locations", force: true do |t|
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

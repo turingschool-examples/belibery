@@ -99,4 +99,12 @@ RSpec.describe Fan, :type => :model do
     error_messages = fan.errors.messages[:base]
     expect(error_messages).to include("System Error. Jorge is too Belieber.")
   end
+
+  it "cannot delete a fan that has donations" do
+    fan = Fan.create(valid_attributes)
+    fan.donations.create(amount: 10)
+    fan.destroy
+    expect(fan).to be
+    expect(Fan.all).to include(fan)
+  end
 end

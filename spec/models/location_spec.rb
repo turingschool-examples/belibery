@@ -49,4 +49,13 @@ RSpec.describe Location, :type => :model do
     result = Location.create(valid_attributes)
     expect(result.beliebe).to eq("Denverlieber")
   end
+
+  it "has have many fans" do
+    location = Location.create(valid_attributes)
+    fan      = Fan.create(name: "Gustavo", email: "belieber@example.com")
+    location.fans << fan
+
+    expect(location.fans.count).to eq(1)
+    expect(location.fans).to include(fan)
+  end
 end

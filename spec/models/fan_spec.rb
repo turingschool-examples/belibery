@@ -36,4 +36,17 @@ RSpec.describe Fan, :type => :model do
     result = Fan.create(valid_attributes)
     expect(result.beliebe).to eq("Gustavo Belieber")
   end
+
+  it "it belongs to a location" do
+    location = Location.create(
+      city:    "Denver",
+      state:   "Colorado",
+      country: "United States"
+      )
+
+    attributes = valid_attributes.merge(location_id: location.id)
+    result     = Fan.create(attributes)
+
+    expect(result.location).to eq(location)
+  end
 end

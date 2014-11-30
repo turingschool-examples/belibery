@@ -1,28 +1,13 @@
-== README
+== Belibery
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A sample app to teach students basic Rails concepts.
 
-Things you may want to cover:
+It has the following branches in order of completion,
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+1. Initial
+2. First Model
+3. Second Model
+4. Model Relationships
+5. Controller Test
+6. Validations
+7. Transactions

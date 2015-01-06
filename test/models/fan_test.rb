@@ -105,4 +105,14 @@ class FanTest < ActiveSupport::TestCase
                     "System Error. Jorge is too Belieber."
 
   end
+
+
+  test "it cannot delete a fan that has donations" do
+    fan = Fan.create(valid_attributes)
+    fan.donations.create(amount: 10)
+    fan.destroy
+
+    refute fan.nil?
+    assert_includes Fan.all, fan
+  end
 end

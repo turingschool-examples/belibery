@@ -28,4 +28,11 @@ class Fan < ActiveRecord::Base
   def beliebe
     "#{name} Belieber"
   end
+
+  def destroy
+    transaction do
+      raise ActiveRecord::Rollback unless donations.empty?
+      super
+    end
+  end
 end

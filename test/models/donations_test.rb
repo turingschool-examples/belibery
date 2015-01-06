@@ -9,7 +9,7 @@ class DonationTest < ActiveSupport::TestCase
     assert donation.invalid?
   end
 
-  test "it can only be creates if a user exists" do
+  test "it is only created if a user exists" do
     donation = Donation.create(amount: 100)
 
     assert donation.invalid?

@@ -14,4 +14,7 @@ gem 'spring',        group: :development
 group :test, :development do
   gem 'rspec-rails'
   gem 'database_cleaner'
+  gem 'pry'
+  gem 'capybara'
 end
+

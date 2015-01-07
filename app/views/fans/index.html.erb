@@ -1,0 +1,16 @@
+<h2>Listing Beliebers</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Actions</th>
+  </tr>
+  <% @fans.each do |fan| %>
+    <tr>
+      <td><%= fan.name %></td>
+      <td><%= fan.email %></td>
+      <td><%= link_to 'Delete', fan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
